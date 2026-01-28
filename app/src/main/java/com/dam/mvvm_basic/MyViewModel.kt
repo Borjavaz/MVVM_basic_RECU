@@ -21,6 +21,10 @@ class MyViewModel(): ViewModel() {
     // usamos mutable, ya que la queremos modificar
     var _numbers = MutableStateFlow(0)
 
+    //variables para tiempo entre pulsaciones
+    private var ultimaPulsacion: Long = 0L
+    val tiempoEntrePulsaciones = MutableStateFlow(0L)
+
     // inicializamos variables cuando instanciamos
     init {
         // estado inicial
@@ -48,10 +52,25 @@ class MyViewModel(): ViewModel() {
     /**
      * comprobar si el boton pulsado es el correcto
      * @param ordinal: Int numero de boton pulsado
-     * @return Boolean si coincide TRUE, si no FALSE
+     * @return Boolean si coincide true si no false
      */
     fun comprobar(ordinal: Int): Boolean {
         Log.d(TAG_LOG, "comprobamos - Estado: ${estadoActual.value}")
+
+        //Calcular tiempo entre pulsaciones
+        val ahora = System.currentTimeMillis()
+
+        if (ultimaPulsacion > 0) {
+            val tiempoTranscurrido = ahora - ultimaPulsacion
+            tiempoEntrePulsaciones.value = tiempoTranscurrido
+
+            // Mostrar en logcat
+            val segundos = tiempoTranscurrido / 1000.0
+            Log.d(TAG_LOG, "Tiempo entre pulsaciones: ${segundos} segundos")
+        }
+
+        ultimaPulsacion = ahora
+
         return if (ordinal == Datos.numero) {
             Log.d(TAG_LOG, "es correcto")
             estadoActual.value = Estados.INICIO

@@ -38,11 +38,29 @@ enum class Estados(val start_activo: Boolean, val boton_activo: Boolean) {
 }
 
 /**
+ * Estados específicos para botones presionados
+ */
+enum class EstadoBoton(val texto: String) {
+    ROJO("Botón Rojo presionado"),
+    VERDE("Botón Verde presionado"),
+    AZUL("Botón Azul presionado"),
+    AMARILLO("Botón Amarillo presionado"),
+    NINGUNO("Ningún botón presionado")
+}
+
+/**
  * Estados auxiliares para corutinas en el ViewModel
  * @param txt: String nombre del estado
  */
 enum class EstadosAuxiliares(val txt: String) {
-    AUX1(txt = "aux1"),
-    AUX2(txt = "aux2"),
-    AUX3(txt = "aux3"),
+    AUX1("aux1") {
+        override fun contar(str1: String, str2: String): Int = str1.length
+    },
+    AUX2("aux2") {
+        override fun contar(str1: String, str2: String): Int = str2.length
+    },
+    AUX3("aux3") {
+        override fun contar(str1: String, str2: String): Int = str1.length + str2.length
+    };
+    abstract fun contar(str1: String, str2: String): Int
 }
