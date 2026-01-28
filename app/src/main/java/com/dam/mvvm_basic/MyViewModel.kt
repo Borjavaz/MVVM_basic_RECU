@@ -74,19 +74,27 @@ class MyViewModel(): ViewModel() {
      */
     fun estadosAuxiliares(msg: String = "") {
         viewModelScope.launch {
-            // inicializamos estado auxiliar
-            // los recorremos
+            //alabras para las funciones
+            val palabra1 = "Ejemplo"
+            val palabra2 = "Texto"
+
+            //Para usar las funciones de los estados
             var estadoAux = EstadosAuxiliares.AUX1
+            val resultado1 = estadoAux.contar(palabra1, palabra2)
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            Log.d(TAG_LOG, "mensaje (corutina): ${msg}")
+            Log.d(TAG_LOG, "mensaje (corutina): ${msg} - Resultado: $resultado1")
             delay(1500)
+
             estadoAux = EstadosAuxiliares.AUX2
+            val resultado2 = estadoAux.contar(palabra1, palabra2)
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            Log.d(TAG_LOG, "mensaje (corutina): ${msg}")
+            Log.d(TAG_LOG, "mensaje (corutina): ${msg} - Resultado: $resultado2")
             delay(1500)
+
             estadoAux = EstadosAuxiliares.AUX3
+            val resultado3 = estadoAux.contar(palabra1, palabra2)
             Log.d(TAG_LOG, "estado (corutina): ${estadoAux}")
-            Log.d(TAG_LOG, "mensaje (corutina): ${msg}")
+            Log.d(TAG_LOG, "mensaje (corutina): ${msg} - Resultado: $resultado3")
             delay(1500)
         }
     }
