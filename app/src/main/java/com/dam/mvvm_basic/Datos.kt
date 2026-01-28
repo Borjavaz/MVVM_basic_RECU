@@ -51,6 +51,5 @@ enum class EstadosAuxiliares(val txt: String) {
     AUX3("aux3") {
         override fun contar(str1: String, str2: String): Int = str1.length + str2.length
     };
-
     abstract fun contar(str1: String, str2: String): Int
 }
