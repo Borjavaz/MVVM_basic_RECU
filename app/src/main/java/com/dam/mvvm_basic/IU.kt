@@ -35,12 +35,22 @@ fun IU(miViewModel: MyViewModel) {
     // para que sea mas facil la etiqueta del log
     // val TAG_LOG = "miDebug"
 
+    //Estado del botón presionado
+    val estadoBoton by miViewModel.estadoBotonActual.collectAsState()
+
     // botones en horizontal
     Column(
         modifier= Modifier.fillMaxWidth().fillMaxHeight().padding(20.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceAround)
     {
+        //Texto que muestra el estado del botón
+        Text(
+            text = "Estado: ${estadoBoton.texto}",
+            fontSize = 16.sp,
+            modifier = Modifier.padding(10.dp)
+        )
+
         Column {
             Row {
                 // creo un boton rojo
@@ -82,7 +92,7 @@ fun Boton(miViewModel: MyViewModel, enum_color: Colores) {
         onClick = {
             Log.d(TAG_LOG, "Dentro del boton: ${enum_color.ordinal}")
             miViewModel.comprobar(enum_color.ordinal)
-                  },
+        },
         modifier = Modifier
             .size((80).dp, (40).dp)
     ) {
