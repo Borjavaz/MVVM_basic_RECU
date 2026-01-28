@@ -97,6 +97,5 @@ class MyViewModel(): ViewModel() {
             Log.d(TAG_LOG, "mensaje (corutina): ${msg} - Resultado: $resultado3")
             delay(1500)
         }
-
     }
 }

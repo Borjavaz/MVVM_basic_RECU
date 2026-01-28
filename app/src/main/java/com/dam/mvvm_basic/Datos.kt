@@ -36,7 +36,6 @@ enum class Estados(val start_activo: Boolean, val boton_activo: Boolean) {
     GENERANDO(start_activo = false, boton_activo = false),
     ADIVINANDO(start_activo = false, boton_activo = true)
 }
-
 /**
  * Estados auxiliares para corutinas en el ViewModel
  * @param txt: String nombre del estado
