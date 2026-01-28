@@ -46,3 +46,14 @@ enum class EstadosAuxiliares(val txt: String) {
     AUX2(txt = "aux2"),
     AUX3(txt = "aux3"),
 }
+
+/**
+ * Estados específicos para botones presionados
+ */
+enum class EstadoBoton(val texto: String) {
+    ROJO("Botón Rojo presionado"),
+    VERDE("Botón Verde presionado"),
+    AZUL("Botón Azul presionado"),
+    AMARILLO("Botón Amarillo presionado"),
+    NINGUNO("Ningún botón presionado")
+}

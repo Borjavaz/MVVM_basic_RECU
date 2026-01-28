@@ -17,6 +17,9 @@ class MyViewModel(): ViewModel() {
     // patron de diseño observer
     val estadoActual = MutableStateFlow(Estados.INICIO)
 
+    // estado del botón presionado
+    val estadoBotonActual = MutableStateFlow(EstadoBoton.NINGUNO)
+
     // este va a ser nuestra lista para la secuencia random
     // usamos mutable, ya que la queremos modificar
     var _numbers = MutableStateFlow(0)
@@ -48,10 +51,20 @@ class MyViewModel(): ViewModel() {
     /**
      * comprobar si el boton pulsado es el correcto
      * @param ordinal: Int numero de boton pulsado
-     * @return Boolean si coincide TRUE, si no FALSE
+     * @return Boolean si coincide true, si no false
      */
     fun comprobar(ordinal: Int): Boolean {
         Log.d(TAG_LOG, "comprobamos - Estado: ${estadoActual.value}")
+
+        //Actualizar estado del botón presionado
+        estadoBotonActual.value = when(ordinal) {
+            0 -> EstadoBoton.ROJO
+            1 -> EstadoBoton.VERDE
+            2 -> EstadoBoton.AZUL
+            3 -> EstadoBoton.AMARILLO
+            else -> EstadoBoton.NINGUNO
+        }
+
         return if (ordinal == Datos.numero) {
             Log.d(TAG_LOG, "es correcto")
             estadoActual.value = Estados.INICIO
